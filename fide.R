@@ -29,21 +29,20 @@ colnames(FIDE)[colnames(FIDE) == "Rk.BRtng.BGm.BK"] <- "BRting"
 
 # remove players who do not have any ratings
 
-#create boolean matrix for each rating type
+#create boolean matrix for each rating type, True means there is a rating. Add matrix together and apply to dataframe 
 
 SR_bool <- NULL  # Check for blank
 RR_bool <- NULL  # Check for NA
 BR_bool <- NULL  # Check for blank
 
-FIDE$RRting[5]
 
-NA_SRting <- is.na(FIDE$SRting)
+  
+RR_bool <- !is.na(FIDE$RRting)
+head(RR_bool)
 
-anyNA(FIDE$ID.Number)
+SR_bool <- FIDE$SRting == " "
+head(SR_bool)
 
-any(FIDE$RRting, rm.na = TRUE)
-
-head(NA_SRting)
 # clean ratings columns
 
 
